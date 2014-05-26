@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="DATABASE_NAME">database</string>
+    <string name="personTable">PERSON</string>
+    <string name="personCId">_ID</string>
+    <string name="personCLastName">LAST_NAME</string>
+    <string name="personCFirstName">first_name</string>
+    <string name="personCMiddleName">middle_name</string>
+    <string name="personCTitle">title</string>
+    <string name="personCBirthDate">birth_date</string>
+    <string name="personCTelephone">telephone_number</string>
+    <string name="personCMail">mail_address</string>
+    <string name="personCAddress">address</string>
+    <item name="databaseVersion" type="integer" format="float">0.1</item>
+    
+</resources>

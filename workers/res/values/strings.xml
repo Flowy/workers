@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">workers</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_choose_employee">ChooseEmployee</string>
+    <string name="title_activity_create_employee">CreateEmployeeActivity</string>
+
+    <string name="id">id</string>
+    <string name="last_name">last name</string>
+    <string name="first_name">first name</string>
+    <string name="middle_name">middle name</string>
+    <string name="title">title</string>
+    <string name="birth_date">birth date</string>
+    <string name="telephone_number">telephone number</string>
+    <string name="mail_address">mail address</string>
+    <string name="address">address</string>
+    <string name="passwordDialogTitle">Enter password</string>
+    <string name="wrongPassword">Wrong password</string>
+    <string name="installBarcodeScanner">Install Barcode Scanner?</string>
+    <string name="requiresBarcodeScanner">This application requires Barcode Scanner. Would you like to install it?</string>
+
+</resources>

@@ -6,11 +6,6 @@ public class Constants {
 	final static boolean LOCAL_LOGV = true;
 	final static String LOG_TAG = "DEBUG_TAG";
 
-	final static String DATABASE_NAME = "database.db";
-	final static int DATABASE_VERSION = 12;
-
-	final static String CONFLICT_CLAUSE = "ON CONFLICT ABORT";
-
 	final static String INTENT_EXTRA_CHOOSEN_ID = "choosenPersonId";
 	final static com.google.common.hash.HashFunction HASH_FUNCTION = com.google.common.hash.Hashing
 			.sha256();

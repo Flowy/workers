@@ -18,6 +18,9 @@ public class DatabaseProvider extends ContentProvider {
 
 	private DatabaseHelper mDBHelper;
 
+	private final static String DATABASE_NAME = "database.db";
+	private final static int DATABASE_VERSION = 13;
+
 	final static class DatabaseHelper extends SQLiteOpenHelper {
 
 		public DatabaseHelper(Context context, String name,

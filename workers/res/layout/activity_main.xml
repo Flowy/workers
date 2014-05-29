@@ -28,6 +28,6 @@
         android:layout_alignRight="@+id/btnArrival"
         android:layout_marginTop="31dp"
         android:onClick="choosePersonButtonClick"
-        android:text="Button" />
+        android:text="Save data" />
 
 </RelativeLayout>

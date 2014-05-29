@@ -2,14 +2,20 @@ package com.example.workers;
 
 import static com.example.workers.Constants.*;
 
+import java.io.*;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,7 +53,6 @@ public class MainActivity extends Activity {
 	}
 
 	void initdb() {
-		ContentResolver cr = contentResolver;
 
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("1417|Juraj Moric");
@@ -64,22 +69,117 @@ public class MainActivity extends Activity {
 		for (String row : list) {
 			Person newPerson = new Person(row.substring(5));
 			QRCard newCard = new QRCard(row, newPerson.companyId);
-			cr.insert(
-					Uri.parse(CONTENT_URI).buildUpon()
-					.appendQueryParameter("table", PERSON_TABLE)
-					.build(), newPerson.toRow());
-			cr.insert(
-					Uri.parse(CONTENT_URI).buildUpon()
+			contentResolver.insert(Uri.parse(CONTENT_URI).buildUpon()
+					.appendQueryParameter("table", PERSON_TABLE).build(),
+					newPerson.toRow());
+			contentResolver.insert(Uri.parse(CONTENT_URI).buildUpon()
 					.appendQueryParameter("table", QR_TABLE).build(),
 					newCard.toRow());
 		}
 	}
 
 	public void choosePersonButtonClick(View view) {
-
+		writeDB();
 		// Intent choosePerson = new Intent(Intent.ACTION_PICK, null, this,
 		// ChooseEmployeeActivity.class);
 		// startActivityForResult(choosePerson, CHOOSE_PERSON_REQUEST);
+	}
+
+	private void writeDB() {
+		if (Environment.MEDIA_MOUNTED.equals(Environment
+				.getExternalStorageState())) {
+			File path = Environment
+					.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+			File file = new File(path, "database.txt");
+
+			BufferedWriter bw = null;
+			try {
+				path.mkdirs();
+				boolean exists = path.exists();
+				if (!exists) {
+					Toast.makeText(
+							this,
+							"Cant create folder on external storage for writing database",
+							Toast.LENGTH_LONG).show();
+					return;
+				}
+				bw = new BufferedWriter(new FileWriter(file, false));
+				// TODO: add date selection
+				Cursor cursor = contentResolver.query(
+						Uri.parse(CONTENT_URI).buildUpon()
+								.appendQueryParameter("table", DAY_ENTRY_TABLE)
+								.build(), DAY_ENTRY_PROJECTION, null, null,
+						DAY_ENTRY_FK_PERSON_ID);
+				cursor.moveToFirst();
+				String formatString = "%-20s%30s%30s%30s";
+				String header = String.format(formatString, "PERSON", "START",
+						"END", "DIFFERENCE");
+				bw.write(header);
+				bw.newLine();
+
+				// DateFormat dateFormat = new SimpleDateFormat("d.M.Y H:m:s",
+				// Locale.getDefault());
+				DateFormat dateFormat = DateFormat.getDateTimeInstance();
+				// DateFormat.MEDIUM, DateFormat.MEDIUM,
+				// XXX: Locale.getDefault());
+				String lastPerson = null;
+				while (!cursor.isAfterLast()) {
+					DayEntry actual = DayEntry.parseCursor(cursor);
+					String startEndDiff = "";
+					String start, end, person;
+					if ((actual.start != null) && (actual.end != null)) {
+						Date diff = new Date(actual.end.getTime()
+								- actual.start.getTime());
+						DateFormat timeFormat = DateFormat.getTimeInstance();
+						timeFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+						startEndDiff = timeFormat.format(diff);
+					}
+					if (actual.start == null) {
+						start = "Not started";
+					} else {
+						start = dateFormat.format(actual.start);
+					}
+					if (actual.end == null) {
+						end = "Not ended";
+					} else {
+						end = dateFormat.format(actual.end);
+					}
+					if ((actual.person == null)
+							|| actual.person.equals(lastPerson)) {
+						person = "";
+					} else {
+						person = actual.person;
+						lastPerson = actual.person;
+					}
+					String line = String.format(formatString, person, start,
+							end, startEndDiff);
+					bw.write(line);
+					bw.newLine();
+					cursor.moveToNext();
+				}
+				cursor.close();
+				Toast.makeText(
+						this,
+						"File with data from database saved into sdcard/downloads/database.txt",
+						Toast.LENGTH_LONG).show();
+				MediaScannerConnection.scanFile(this,
+						new String[] { file.toString() }, null, null);
+			} catch (IOException e) {
+
+			} finally {
+				if (bw != null) {
+					try {
+						bw.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		} else {
+			Toast.makeText(this, "Cant access external storage for write",
+					Toast.LENGTH_LONG).show();
+		}
+
 	}
 
 	public void arrivalButtonClick(View view) {
@@ -94,7 +194,7 @@ public class MainActivity extends Activity {
 			if (requestCode == CHOOSE_PERSON_REQUEST) {
 				String personId = data.getStringExtra(INTENT_EXTRA_CHOOSEN_ID);
 				Toast.makeText(this, "Choosen: " + personId, Toast.LENGTH_LONG)
-						.show();
+				.show();
 			} else if (requestCode == SCAN_QR_REQUEST) {
 				String scanResult = data.getStringExtra("SCAN_RESULT");
 				if (LOCAL_LOGV) {

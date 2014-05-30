@@ -128,17 +128,19 @@ public class MainActivity extends Activity {
 					String startEndDiff = "";
 					String start, end, person;
 					if ((actual.start != null) && (actual.end != null)) {
-						Date diff = new Date(actual.end.getTime()
-								- actual.start.getTime());
-						DateFormat timeFormat = DateFormat.getTimeInstance();
-						timeFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-						startEndDiff = timeFormat.format(diff);
+						long diff = actual.end.getTime()
+								- actual.start.getTime();
+						if (diff == 0) {
+							startEndDiff = "Not started";
+						} else {
+							Date diffDate = new Date(diff);
+							DateFormat timeFormat = DateFormat
+									.getTimeInstance();
+							timeFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+							startEndDiff = timeFormat.format(diffDate);
+						}
 					}
-					if (actual.start == null) {
-						start = "Not started";
-					} else {
-						start = dateFormat.format(actual.start);
-					}
+					start = dateFormat.format(actual.start);
 					if (actual.end == null) {
 						end = "Not ended";
 					} else {
@@ -188,13 +190,19 @@ public class MainActivity extends Activity {
 		integrator.initiateScan(SCAN_QR_REQUEST);
 	}
 
+	public void leaveButtonClick(View view) {
+		logRequest = new LeaveRequest(this);
+		IntentIntegrator integrator = new IntentIntegrator(this);
+		integrator.initiateScan(SCAN_QR_REQUEST);
+	}
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
 			if (requestCode == CHOOSE_PERSON_REQUEST) {
 				String personId = data.getStringExtra(INTENT_EXTRA_CHOOSEN_ID);
 				Toast.makeText(this, "Choosen: " + personId, Toast.LENGTH_LONG)
-				.show();
+						.show();
 			} else if (requestCode == SCAN_QR_REQUEST) {
 				String scanResult = data.getStringExtra("SCAN_RESULT");
 				if (LOCAL_LOGV) {

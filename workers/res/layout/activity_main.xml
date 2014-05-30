@@ -11,23 +11,35 @@
     tools:ignore="MergeRootFrame" >
 
     <Button
-        android:id="@+id/btnArrival"
+        android:id="@+id/btnLeave"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:onClick="arrivalButtonClick"
-        android:text="Prichod/Odchod" />
+        android:onClick="leaveButtonClick"
+        android:text="Odchod" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/btnArrival"
+        android:layout_alignRight="@+id/btnLeave"
         android:layout_marginTop="31dp"
         android:onClick="choosePersonButtonClick"
         android:text="Save data" />
+
+    <Button
+        android:id="@+id/btnArrive"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_above="@+id/btnLeave"
+        android:layout_alignLeft="@+id/btnLeave"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="39dp"
+        android:onClick="arrivalButtonClick"
+        android:text="Prichod" />
 
 </RelativeLayout>

@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.workers.MainActivity"
+    tools:context="com.flowy.workers.MainActivity"
     tools:ignore="MergeRootFrame" >
 
     <Button
@@ -18,17 +18,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:onClick="leaveButtonClick"
-        android:text="Odchod" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/btnLeave"
-        android:layout_marginTop="31dp"
-        android:onClick="choosePersonButtonClick"
-        android:text="Save data" />
+        android:text="@string/leave"
+        android:textSize="40sp" />
 
     <Button
         android:id="@+id/btnArrive"
@@ -40,6 +31,46 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="39dp"
         android:onClick="arrivalButtonClick"
-        android:text="Prichod" />
+        android:text="@string/arrive"
+        android:textSize="40sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btnArrive"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tvSent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="choosePersonButtonClick"
+                android:text="@string/saveData" />
+
+            <Button
+                android:id="@+id/sendMSG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="sendNewMessage"
+                android:text="Send" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

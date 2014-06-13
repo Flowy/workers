@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="com/example/workers/ChooseEmployee.java|com/example/workers/ListViewLoader.java|com/example/workers/MyListAdapter.java|com/example/workers/CreateEmployeeActivity.java|com/example/workers/MySQLiteHelper.java|com/example/workers/PersonDataSource.java|com/example/workers/SQLiteUnitOfWork.java|com/example/workers/UnitOfWork.java|com/example/workers/Holiday.java|com/example/workers/PevnaPracDoba.java|com/example/workers/WorkingGroup.java|com/example/workers/WorkPeriod.java|com/example/workers/DayTime.java|com/example/workers/PasswordDialogFragment.java" kind="src" path="src"/>
+	<classpathentry excluding="com/flowy/workers/CreateEmployeeActivity.java|com/flowy/workers/PasswordDialogFragment.java|com/flowy/workers/PersonDataSource.java|com/flowy/workers/WorkPeriod.java|com/flowy/workers/PevnaPracDoba.java|com/flowy/workers/exclude/|com/flowy/workers/db/SQLiteUnitOfWork.java" kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="lib" path="libs/guava-16.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Lukas/AppData/Local/Android/android-sdk/extras/android/support/v4/android-support-v4.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

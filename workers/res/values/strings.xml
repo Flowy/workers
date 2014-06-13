@@ -20,5 +20,8 @@
     <string name="wrongPassword">Wrong password</string>
     <string name="installBarcodeScanner">Install Barcode Scanner?</string>
     <string name="requiresBarcodeScanner">This application requires Barcode Scanner. Would you like to install it?</string>
+    <string name="saveData">Save Data</string>
+    <string name="arrive">Príchod</string>
+    <string name="leave">Odchod</string>
 
 </resources>

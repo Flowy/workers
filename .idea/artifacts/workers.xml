@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="apk" build-on-make="true" name="workers">
+    <output-path>$PROJECT_DIR$/out/artifacts/workers</output-path>
+    <properties id="android-properties">
+      <options>
+        <option name="keyAlias" value="androidkey" />
+        <option name="keyPassword" value="RmRzYWZkc2Ex" />
+        <option name="keyStorePassword" value="RmRzYWZkc2Ex" />
+        <option name="keyStoreUrl" value="file://F:/Users/Lukas/Disk Google/certs/android/keystore.jks" />
+        <option name="proGuardCfgFiles">
+          <list>
+            <option value="file://%MODULE_SDK_HOME%/tools/proguard/proguard-android.txt" />
+          </list>
+        </option>
+        <option name="signingMode" value="RELEASE_SIGNED" />
+      </options>
+    </properties>
+    <root id="archive" name="workers.apk">
+      <element id="android-final-package" facet="workers/android/Android" />
+    </root>
+  </artifact>
+</component>

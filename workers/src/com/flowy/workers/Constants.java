@@ -4,7 +4,7 @@ public class Constants {
 
 	public final static boolean LOCAL_LOG = true;
 	public final static boolean LOCAL_LOGV = true;
-	public final static String LOG_TAG = "DEBUG_TAG";
+	public final static String LOG_TAG = "DEBUG_TAG" + "";
 
 	public final static String INTENT_EXTRA_CHOOSEN_ID = "choosenPersonId";
 	public final static com.google.common.hash.HashFunction HASH_FUNCTION = com.google.common.hash.Hashing
